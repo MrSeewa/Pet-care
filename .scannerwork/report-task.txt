@@ -1,0 +1,6 @@
+projectKey=petcare
+serverUrl=http://localhost:9000
+serverVersion=26.10.0.133078
+dashboardUrl=http://localhost:9000/dashboard?id=petcare
+ceTaskId=041b8702-602e-4dbe-9b41-0ada6573a070
+ceTaskUrl=http://localhost:9000/api/ce/task?id=041b8702-602e-4dbe-9b41-0ada6573a070

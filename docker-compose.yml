@@ -1,0 +1,33 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: petcare-backend:latest
+    container_name: petcare-backend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - PETCARE_DB_PATH=/app/data/petcare.db
+      - CORS_ORIGIN=http://localhost:5173
+      - JWT_SECRET=${JWT_SECRET:-petcare-qa-dev-secret-key-2026}
+    volumes:
+      - petcare_data:/app/data
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    image: petcare-frontend:latest
+    container_name: petcare-frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  petcare_data:
